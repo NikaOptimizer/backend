@@ -20,14 +20,9 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
-DATABASES = {
-    # Temporary SQLite default so Django commands can run before the real app database is chosen.
-    # Strategy endpoints intentionally stay unimplemented until the database schema exists.
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+from nika.backend.database import database_config
+
+DATABASES = {'default': database_config(BASE_DIR)}
 
 TEMPLATES = []
 USE_TZ = True
